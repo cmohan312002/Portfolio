@@ -12,82 +12,77 @@ export default function Portfolio() {
   };
 
   return (
-    <div className={darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}>
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold cursor-pointer" onClick={() => scrollTo('hero')}>Mohan Chilivery</h1>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex gap-6 items-center text-sm font-medium">
-            <button onClick={() => scrollTo('education')} className="hover:text-blue-500 dark:hover:text-blue-400">Education</button>
-            <button onClick={() => scrollTo('experience')} className="hover:text-blue-500 dark:hover:text-blue-400">Experience</button>
-            <button onClick={() => scrollTo('projects')} className="hover:text-blue-500 dark:hover:text-blue-400">Projects</button>
-            <button onClick={() => scrollTo('skills')} className="hover:text-blue-500 dark:hover:text-blue-400">Skills</button>
-            <button onClick={() => scrollTo('contact')} className="hover:text-blue-500 dark:hover:text-blue-400">Contact</button>
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600"
-            >
-              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+    <div className={`${darkMode ? 'dark' : ''}`}>
+      <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white min-h-screen">
+        {/* Navbar */}
+        <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 className="text-xl font-bold cursor-pointer" onClick={() => scrollTo('hero')}>Mohan Chilivery</h1>
+            <div className="hidden md:flex gap-6 items-center text-sm font-medium">
+              <button onClick={() => scrollTo('education')} className="hover:text-blue-500 dark:hover:text-blue-400">Education</button>
+              <button onClick={() => scrollTo('experience')} className="hover:text-blue-500 dark:hover:text-blue-400">Experience</button>
+              <button onClick={() => scrollTo('projects')} className="hover:text-blue-500 dark:hover:text-blue-400">Projects</button>
+              <button onClick={() => scrollTo('skills')} className="hover:text-blue-500 dark:hover:text-blue-400">Skills</button>
+              <button onClick={() => scrollTo('contact')} className="hover:text-blue-500 dark:hover:text-blue-400">Contact</button>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600"
+              >
+                {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+            </div>
+            <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
+          {mobileMenuOpen && (
+            <div className="md:hidden px-6 pb-4 flex flex-col gap-3 text-sm font-medium bg-white dark:bg-gray-900">
+              <button onClick={() => scrollTo('education')} className="hover:text-blue-500 dark:hover:text-blue-400">Education</button>
+              <button onClick={() => scrollTo('experience')} className="hover:text-blue-500 dark:hover:text-blue-400">Experience</button>
+              <button onClick={() => scrollTo('projects')} className="hover:text-blue-500 dark:hover:text-blue-400">Projects</button>
+              <button onClick={() => scrollTo('skills')} className="hover:text-blue-500 dark:hover:text-blue-400">Skills</button>
+              <button onClick={() => scrollTo('contact')} className="hover:text-blue-500 dark:hover:text-blue-400">Contact</button>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+              >
+                {darkMode ? 'Light Mode' : 'Dark Mode'}
+              </button>
+            </div>
+          )}
+        </nav>
 
-          {/* Mobile Menu Toggle */}
-          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden px-6 pb-4 flex flex-col gap-3 text-sm font-medium bg-white dark:bg-gray-900">
-            <button onClick={() => scrollTo('education')} className="hover:text-blue-500 dark:hover:text-blue-400">Education</button>
-            <button onClick={() => scrollTo('experience')} className="hover:text-blue-500 dark:hover:text-blue-400">Experience</button>
-            <button onClick={() => scrollTo('projects')} className="hover:text-blue-500 dark:hover:text-blue-400">Projects</button>
-            <button onClick={() => scrollTo('skills')} className="hover:text-blue-500 dark:hover:text-blue-400">Skills</button>
-            <button onClick={() => scrollTo('contact')} className="hover:text-blue-500 dark:hover:text-blue-400">Contact</button>
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-            >
-              {darkMode ? 'Light Mode' : 'Dark Mode'}
-            </button>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section */}
-      <section id="hero" className="text-center py-24 px-6">
-        <motion.h2
-          className="text-4xl md:text-5xl font-extrabold mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Hi, I'm Mohan 👋
-        </motion.h2>
-        <motion.p
-          className="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          Software Engineer passionate about solving real-world problems through clean code and innovative tech.
-        </motion.p>
-        <div className="mt-6 flex justify-center gap-4">
-          <a href="mailto:cmohan312002@gmail.com" className="hover:text-blue-500"><Mail /></a>
-          <a href="https://linkedin.com/in/mohan-chilivery" target="_blank" rel="noreferrer" className="hover:text-blue-500"><Linkedin /></a>
-          <a href="https://github.com/cmohan312002" target="_blank" rel="noreferrer" className="hover:text-blue-500"><Github /></a>
-          <a
-            href="/Mohan_Chilivery_Resume.pdf"
-            download
-            className="flex items-center gap-1 border border-blue-500 text-blue-500 px-3 py-1 rounded hover:bg-blue-500 hover:text-white"
+        {/* Hero Section Full Page */}
+        <section id="hero" className="flex flex-col items-center justify-center h-screen px-6 text-center">
+          <motion.h2
+            className="text-4xl md:text-5xl font-extrabold mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <Download className="w-4 h-4" /> Resume
-          </a>
-        </div>
-      </section>
+            Hi, I'm Mohan 👋
+          </motion.h2>
+          <motion.p
+            className="text-lg md:text-xl max-w-3xl text-gray-600 dark:text-gray-300"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            Software Engineer passionate about solving real-world problems through clean code and innovative tech.
+          </motion.p>
+          <div className="mt-6 flex gap-4">
+            <a href="mailto:cmohan312002@gmail.com" className="hover:text-blue-500"><Mail /></a>
+            <a href="https://linkedin.com/in/mohan-chilivery" target="_blank" rel="noreferrer" className="hover:text-blue-500"><Linkedin /></a>
+            <a href="https://github.com/cmohan312002" target="_blank" rel="noreferrer" className="hover:text-blue-500"><Github /></a>
+            <a
+              href="/Mohan_Chilivery_Resume.pdf"
+              download
+              className="flex items-center gap-1 border border-blue-500 text-blue-500 px-3 py-1 rounded hover:bg-blue-500 hover:text-white"
+            >
+              <Download className="w-4 h-4" /> Resume
+            </a>
+          </div>
+        </section>
 
       {/* Education & Experience */}
       <section id="education" className="bg-gray-50 dark:bg-gray-800 py-16 px-6">
@@ -163,5 +158,6 @@ export default function Portfolio() {
         <p className="text-sm">&copy; 2025 Mohan Chilivery. Built with ❤️ using React, Tailwind CSS, and Framer Motion.</p>
       </footer>
     </div>
+          </div>
   );
 }
